@@ -1,0 +1,417 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Rubik", serif;
+  font-optical-sizing: auto;
+  font-weight:400;
+  font-style: normal;
+  overflow: hidden;
+}
+.split-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  z-index: 1;
+}
+
+.split {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  transition: transform 2s ease-in-out;
+}
+
+.split.left {
+  left: 0;
+  transform-origin: left;
+  background: url('assets/img/left.png') center/cover no-repeat;
+
+}
+
+.split.right {
+  right: 0;
+  transform-origin: right;
+  background: url('assets/img/right.png') center/cover no-repeat;
+
+}
+/* Sliding Animation */
+.hidden .left {
+  transform: translateX(-100%);
+}
+
+.hidden .right {
+  transform: translateX(100%);
+}
+
+/* LoginAs Page (Initially Hidden) */
+.loginAs-page {
+  background: url('assets/img/loginAs_bg.png') center/cover no-repeat;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+}
+.loginAs-page-header{
+  height: 10vh;
+  width: 100%;
+  background: rgb(119, 20, 1);
+  color: #fff;
+  padding: 1rem 2rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.loginAs-page-body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8rem;
+}
+
+.loginAs-page-btns{
+  display: flex;
+  margin: 2rem;
+}
+.loginAs-page-header h1 {
+font-size: 3rem;
+letter-spacing: 0.1rem;
+word-spacing: 0.3rem;
+margin-left: 10rem;
+}
+
+.loginAs-page h1 {
+  font-size: 3rem;
+  margin-bottom: 1.3rem;
+}
+
+.loginAs-page button {
+  width:300px;
+  padding: 1rem 2rem;
+  margin: 1rem;
+  font-size: 2.5rem;
+  letter-spacing: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 10px;
+}
+#facultyBtn{
+  border: 5px solid rgb(203, 99, 99);
+}
+#adminBtn{
+  border: 5px solid rgb(61, 101, 97);
+}
+
+/* Header */
+.login-header {
+  height: 10vh;
+  background: rgb(119, 20, 1);
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.logo-container {
+  width: 150px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin:  0 1rem;
+  background-color: #fff;
+}
+
+.logo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* login and forgot page */
+.forlog_main_container{
+height: 100vh;
+display: flex;
+justify-content:center;
+align-items: center;
+overflow: hidden; 
+background: url('assets/img/login_bg.jpg') center/cover no-repeat;
+}
+
+.forlog-header h1 {
+  font-size: 3rem;
+  letter-spacing: 0.1rem;
+  word-spacing: 0.3rem;
+  margin-left: 10rem;
+  
+}
+.forlog-container {
+  height: 90vh;
+  width: 80vw;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  padding: 0 2rem;
+  overflow: hidden; 
+  background-color:white;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3), 
+  -4px -4px 10px rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+.forlog-img-container {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.1rem;
+ 
+  background: rgb(255, 253, 249);
+}
+
+.forlog-img-container img {
+  width: 100%;
+  height: auto;
+}
+
+
+/* login and forgot password Form */
+.forlog-form {
+  width: 25vw;
+  height: 60vh;
+  padding:0 2rem 2rem 2rem;
+  margin: 3rem 2rem 2rem 0;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 5px rgb(225, 225, 241);
+}
+
+
+.forlog-form h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #7a0000;
+}
+
+
+/* Input Fields */
+.input-group {
+  width: 25vw;
+  position: relative;
+  margin-bottom: 1rem;
+ 
+
+}
+.input-group .icon {
+  position: absolute;
+  top: 35%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #888;
+}
+.input-group input {
+  width: 100%;
+  margin-bottom: 0.9rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  padding: 0.8rem 3rem;
+}
+.input-group input:focus {
+  border-color: #a90000;
+  outline: none;
+  box-shadow: 0 0 5px rgba(169, 0, 0, 0.5);
+}
+
+/* login and forgot password Button */
+.forlog-form .forlog-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background: #a90000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.forlog-form .forlog-btn:hover {
+  background: #7a0000;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Links */
+.form-links {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.form-links a {
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.form-links a span {
+  color: #a90000;
+  text-decoration: underline;
+}
+
+.forgot-icon{
+  color: rgb(119, 20, 1);
+  font-size: 3rem;
+  margin-bottom: 10px 0 0 0;
+}
+.forlog-form h3 {
+  margin: 10px 0;
+  font-size: 1.6rem;
+  color: #333;
+}
+
+.forlog-form p {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+/* Back to Login Link */
+#back-to-login {
+  display: block;
+  margin-top: 2rem;
+  font-size: 1rem;
+  color: rgb(119, 20, 1);
+  text-decoration: none;
+}
+
+#back-to-login:hover {
+  text-decoration: underline;
+}
+
+
+/* Signup page */
+.signup_main_container{
+  height: 100vh;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  overflow: hidden; 
+  background: url('assets/img/login_bg.jpg') center/cover no-repeat;
+  }
+  
+  .signup-header h1 {
+    font-size: 3rem;
+    letter-spacing: 0.1rem;
+    word-spacing: 0.3rem;
+    margin-left: 10rem;
+    
+  }
+  .signup-container {
+    height: 90vh;
+    width: 80vw;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    padding: 0 2rem;
+    overflow: hidden; 
+    background-color:white;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3), 
+    -4px -4px 10px rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+  }
+  .signup-img-container {
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(255, 253, 249);
+  }
+  
+  .signup-img-container img {
+    width: 100%;
+    height: auto;
+  }
+  
+  
+  /* login and forgot password Form */
+  .signup-form {
+    width: 25vw;
+    height: 72vh;
+    padding:0 2rem 2rem 2rem;
+    margin: 3rem 2rem 2rem 0;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 5px rgb(225, 225, 241);
+  }
+  .signup-form h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #7a0000;
+  }
+  /* Signup Button */
+  .signup-form .signup-btn {
+    width: 100%;
+    padding: 0.8rem;
+    background: #a90000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .signup-form .signup-btn:hover {
+    background: #7a0000;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Links */
+  .signup-form a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    color: #333;
+  }
+  
+  .signup-form a span {
+    color: #a90000;
+    text-decoration: underline;
+  }
+/* Signup img container */
+.signup-img-container {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(255, 253, 249);
+}
+
+.signup-img-container img {
+  width: 100%;
+  height: auto;
+}
+
+
+
+

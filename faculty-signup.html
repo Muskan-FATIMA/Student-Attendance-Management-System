@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty Login Page</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+  <div class="signup_main_container">
+  <div class="signup-container">
+   
+    <div class="signup-form ">
+         <h1>CREATE NEW ACCOUNT</h1> 
+      <form onsubmit="return validateForm()" action="login_page.html" method="post">
+        <div class="input-group">
+          <i class="fas fa-phone icon"></i>
+          <input type="text" id="phone" placeholder="Phone Number" required>
+        </div>
+        <div class="input-group">
+          <i class="fas fa-envelope icon"></i>
+          <input type="email"id="email" placeholder="Email" required>
+        </div>
+       
+        <div class="input-group">
+          <i class="fas fa-lock icon"></i>
+          <input type="password" id="password" placeholder="Password" required>
+          </div>
+          <div class="input-group">
+            <i class="fas fa-lock icon"></i>
+            <input type="password" id="password" placeholder="Re-enter Password" required>
+        </div>
+        <button type="submit" class="signup-btn">SIGN UP</button>
+        
+      </form>
+      <a href="faculty-login.html">Already have an account? <span>Login Here</span></a>
+    </div>
+    <div class="signup-img-container">
+      <img src="assets/img/signup.png" alt="signup-img-container">
+    </div>
+  </div>
+</div>
+  <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login Page</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+  <div class="forlog_main_container">
+  <div class="forlog-container">
+    <div class="forlog-img-container">
+      <img src="assets/img/login.jpg" alt="login img">
+    </div>
+    <div class="forlog-form ">
+         <h1>Hello,Welcome Back</h1> 
+      <form onsubmit="return validateForm()" action="login_page.html" method="post"  class="forlog">
+        <div class="input-group">
+            <i class="fas fa-phone icon"></i>
+            <input type="text" id="phone" placeholder="Phone Number">
+          </div>
+          <div class="input-group">
+            <i class="fas fa-lock icon"></i>
+            <input type="password" id="password" placeholder="Password">
+            
+          </div>
+        <button type="submit" class="forlog-btn">LOGIN</button>
+      </form>
+      <div class="form-links">
+        <a href="admin-forgot-password.html">Forgot Password? <span>Click Here</span></a> <br><br>
+        <a href="admin-signup.html" style="font-size: 1.1rem; font-weight: 550;">New Registration? <span>Signup Here</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+  <script src="index.js"></script>
+</body>
+</html>
