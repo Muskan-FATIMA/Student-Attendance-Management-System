@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="a-page">
+      <aside class="a-sidebar">
+        <img
+          src="assets/img/su-logo-white.png"
+          alt="SU-logo-white"
+          class="su-logo-white"
+        />
+        <div class="line-below-logo"></div>
+        <div class="a-sidebar-links">
+          <a href="dashboard.html" class="dashboard">
+            <i class="fa-solid fa-chart-line" style="color: #fdb813"></i>
+            <span style="color: #fdb813">Dashboard</span>
+          </a>
+          <a href="profile.html" target="_blank" class="profile">
+            <i class="fa-solid fa-user"></i>
+            <span>Manage Your Profile</span>
+          </a>
+          <a href="teachers.html" target="_blank" class="teachers">
+            <i class="fa-solid fa-chalkboard-user"></i>
+            <span>Teachers</span>
+          </a>
+          <a href="batches.html" target="_blank" class="batches">
+            <i class="fa-regular fa-calendar-plus"></i>
+            <span>Batches</span>
+          </a>
+          <a href="courses.html" target="_blank" class="courses">
+            <i class="fa-solid fa-bookmark"></i>
+            <span>Courses</span>
+          </a>
+          <a href="sections.html" target="_blank" class="sections">
+            <i class="fa-solid fa-table-columns"></i>
+            <span>Sections</span>
+          </a>
+          <a href="subjects.html" target="_blank" class="subjects">
+            <i class="fa-solid fa-book-open"></i>
+            <span>Subjects</span>
+          </a>
+          <a href="students.html" target="_blank" class="students">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>Students</span>
+          </a>
+          <a
+            href="attendance-record.html"
+            target="_blank"
+            class="attendance-record"
+          >
+            <i class="fa-regular fa-clipboard"></i>
+            <span>Attendance Record</span>
+          </a>
+          <div class="line-above-logout"></div>
+          <a href="login.html" target="_blank" class="logout">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>Logout</span>
+          </a>
+        </div>
+      </aside>
+      <div class="a-main">
+        <div class="a-heading">
+          <h1>DASHBOARD</h1>
+        </div>
+        <div class="dashboard-content">
+          <div class="dashboard-card-container">
+            <a href="teachers.html" target="_blank" class="dashboard-card1">
+              <div class="card-img">
+                <i class="teacher-icon fa-solid fa-chalkboard-user fa-2x"></i>
+              </div>
+              <div class="card-content">
+                <span class="card-num">75</span>
+                <span class="card-text">TOTAL TEACHERS</span>
+              </div>
+            </a>
+            <a href="students.html" target="_blank" class="dashboard-card2">
+              <div class="card-img">
+                <i class="student-icon fa-solid fa-graduation-cap fa-2x"></i>
+              </div>
+              <div class="card-content">
+                <span class="card-num">1,025</span>
+                <span class="card-text">TOTAL STUDENTS</span>
+              </div>
+            </a>
+            <a href="courses.html" target="_blank" class="dashboard-card3">
+              <div class="card-img">
+                <i class="course-icon fa-solid fa-bookmark fa-2x"></i>
+              </div>
+              <div class="card-content">
+                <span class="card-num">45</span>
+                <span class="card-text">TOTAL COURSES</span>
+              </div>
+            </a>
+            <a
+              href="attendance-record.html"
+              target="_blank"
+              class="dashboard-card4"
+            >
+              <div class="card-img">
+                <i class="attendance-icon fa-solid fa-chart-column fa-2x"></i>
+              </div>
+              <div class="card-content">
+                <span class="card-num">88.1%</span>
+                <span class="card-text">ATTENDANCE</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

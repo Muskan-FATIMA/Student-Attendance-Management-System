@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Profile</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="a-page">
+      <aside class="a-sidebar">
+        <img
+          src="assets/img/su-logo-white.png"
+          alt="SU-logo-white"
+          class="su-logo-white"
+        />
+        <div class="line-below-logo"></div>
+        <div class="a-sidebar-links">
+          <a href="dashboard.html" target="_blank" class="dashboard">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Dashboard</span>
+          </a>
+          <a href="profile.html" class="profile">
+            <i class="fa-solid fa-user" style="color: #fdb813"></i>
+            <span style="color: #fdb813">Manage Your Profile</span>
+          </a>
+          <a href="teachers.html" target="_blank" class="teachers">
+            <i class="fa-solid fa-chalkboard-user"></i>
+            <span>Teachers</span>
+          </a>
+          <a href="batches.html" target="_blank" class="batches">
+            <i class="fa-regular fa-calendar-plus"></i>
+            <span>Batches</span>
+          </a>
+          <a href="courses.html" target="_blank" class="courses">
+            <i class="fa-solid fa-bookmark"></i>
+            <span>Courses</span>
+          </a>
+          <a href="sections.html" target="_blank" class="sections">
+            <i class="fa-solid fa-table-columns"></i>
+            <span>Sections</span>
+          </a>
+          <a href="subjects.html" target="_blank" class="subjects">
+            <i class="fa-solid fa-book-open"></i>
+            <span>Subjects</span>
+          </a>
+          <a href="students.html" target="_blank" class="students">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>Students</span>
+          </a>
+          <a
+            href="attendance-record.html"
+            target="_blank"
+            class="attendance-record"
+          >
+            <i class="fa-regular fa-clipboard"></i>
+            <span>Attendance Record</span>
+          </a>
+          <div class="line-above-logout"></div>
+          <a href="login.html" target="_blank" class="logout">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>Logout</span>
+          </a>
+        </div>
+      </aside>
+      <div class="a-main">
+        <div class="a-heading">
+          <h1>MY PROFILE</h1>
+        </div>
+        <div class="profile-main">
+          <div class="profile-container">
+            <div class="profile-head">
+              <div class="profile-name">
+                <div class="profile-img">
+                  <i class="fa-solid fa-user fa-2x"></i>
+                </div>
+                <h1>ADMIN</h1>
+              </div>
+              <i class="fa-solid fa-pencil profile-edit-btn"></i>
+            </div>
+            <div class="profile-content">
+              <table class="profile-table">
+                <tr>
+                  <td class="profile-table-main">Phone No.:</td>
+                  <td class="profile-table-data">123456789</td>
+                </tr>
+                <tr>
+                  <td class="profile-table-main">Email ID:</td>
+                  <td class="profile-table-data">pk123@gmail.com</td>
+                </tr>
+              </table>
+              <button class="password-change-btn">CHANGE PASSWORD</button>
+            </div>
+          </div>
+          <div class="profile-edit-popup-box">
+            <div class="heading">
+              <h1>UPDATE DETAILS</h1>
+            </div>
+            <form action="">
+              <label for="phone">Phone No.:</label>
+              <br />
+              <input type="tel" id="phone" name="phone" />
+              <br />
+              <label for="email">Email:</label>
+              <br />
+              <input type="email" id="email" name="email" />
+              <br />
+              <div class="btns">
+                <button class="update-btn">UPDATE</button>
+                <button class="cancel-btn">CANCEL</button>
+              </div>
+            </form>
+          </div>
+          <div class="password-change-popup-box">
+            <div class="heading">
+              <h1>CHANGE PASSWORD</h1>
+            </div>
+            <form action="">
+              <label for="email">Email:</label>
+              <br />
+              <input type="email" id="email" name="email" />
+              <br />
+              <label for="password">Old Password:</label>
+              <br />
+              <input type="password" id="password1" name="password1" />
+              <br />
+              <label for="password">New Password:</label>
+              <br />
+              <input type="password" id="password2" name="password2" />
+              <br />
+              <div class="btns">
+                <button class="update-btn">UPDATE</button>
+                <button class="cancel-btn">CANCEL</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>

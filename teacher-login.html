@@ -3,10 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Login Page</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-</head>
+  <title>Teacher Login Page</title>
+  <link
+  href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
+  rel="stylesheet"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+/>
+<link rel="stylesheet" href="style.css" /></head>
 <body>
   <div class="forlog_main_container">
   <div class="forlog-container">
@@ -14,8 +20,9 @@
       <img src="assets/img/login.jpg" alt="login img">
     </div>
     <div class="forlog-form ">
-         <h1>Hello,Welcome Back</h1> 
-      <form onsubmit="return validateForm()" action="login_page.html" method="post"  class="forlog">
+      <p class="welcome-para1">Welcome, Teacher.</p>
+      <p class="welcome-para2">Please log in to continue!</p>
+      <form onsubmit="return validateForm()" action="login_page.html" method="post"  class="signup">
         <div class="input-group">
             <i class="fas fa-phone icon"></i>
             <input type="text" id="phone" placeholder="Phone Number">
@@ -28,8 +35,11 @@
         <button type="submit" class="forlog-btn">LOGIN</button>
       </form>
       <div class="form-links">
-        <a href="faculty-forgot-password.html">Forgot Password? <span>Click Here</span></a> <br><br>
-        <a href="faculty-signup.html" style="font-size: 1.1rem; font-weight: 550;">New Registration? <span>Signup Here</span></a>
+       <span>Forgot Password?</span>
+       <a href="teacher-forgot-password.html">Click Here</a> 
+       <br><br>
+        <span class="new-reg">New Teacher?</span> 
+        <a href="teacher-signup.html" style="font-size: 1rem;">Signup Here</span></a>
       </div>
     </div>
   </div>
