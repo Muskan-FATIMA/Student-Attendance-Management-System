@@ -1,0 +1,209 @@
+@media (max-width:1024px) {
+/* HOME PAGE */
+  .split-container {
+    flex-direction: column;
+  }
+  .split {
+    width: 100%;
+    height: 50%;
+    position: relative;
+  }
+  .split.left {
+    top: 0;
+    transform-origin: top;
+    background: url("/static/images/left.png") center/cover no-repeat;
+  }
+  .split.right {
+    bottom: 0;
+    transform-origin: bottom;
+    background: url("/static/images/right.png") center/cover no-repeat;
+  }
+  .hidden .left {
+    transform: translateY(-100%);
+  }
+  .hidden .right {
+    transform: translateY(100%);
+  }
+
+  /* LOGIN AS PAGE */
+  .logo-container {
+    width: 7.5rem;
+    height: 4rem;
+    margin: 0 0 0.5rem 0.5rem;
+  }
+  .loginAs-page-header h1 {
+    font-size: 2.1rem;
+    word-spacing: 0;
+    margin-left: 4rem;
+  }
+  .loginAs-page-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8rem;
+  }
+  .loginAs-page-body h1 {
+    font-size: 2.7rem;
+  }
+  .loginAs-page a {
+    width: 17rem;
+    padding: 1.2rem 2rem;
+    margin: 0 1rem;
+    font-size: 2.2rem;
+    letter-spacing: 4px;
+  }
+
+  /* LOGIN PAGE, FORGOT PASSWORD PAGE, SIGN UP PAGE */
+  .forlog-container,
+  .signup-container {
+    height: 80vh;
+    width: 65vw;
+    padding: 0 0.5rem;
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 0;
+  }
+  .forlog-img-container,
+  .signup-img-container {
+    display: none;
+  }
+  .forlog-form,
+  .signup-form {
+    width: 100%;
+    height: 95%;
+    margin: 2rem;
+    background-color: #fcfbf7;
+  }
+  .forlog-form .welcome-para1,
+  .signup-form .welcome-para1 {
+    font-size: 1.6rem;
+  }
+  .forlog-form {
+    padding: 0 2rem;
+    height: 80%;
+  }
+}
+@media (max-width:768px) {
+
+  /* LOGIN AS PAGE */
+  .logo-container {
+    width: 8rem;
+    height: 4.2rem;
+  }
+  .loginAs-page-header h1 {
+    font-size: 1.8rem;
+    margin-left: 2rem;
+    letter-spacing: 0;
+    word-spacing: 0.1rem;
+  }
+  .loginAs-page-body h1 {
+    font-size: 2.2rem;
+  }
+  .loginAs-page a {
+    width: 13.5rem;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+  }
+
+  /* LOGIN PAGE, FORGOT PASSWORD PAGE, SIGN UP PAGE */
+  .forlog-container,
+  .signup-container {
+    height: 80vh;
+    width: 90vw;
+  }
+  .forlog-form,
+  .signup-form {
+    width: 100%;
+    height: 95%;
+    margin: 2rem;
+    background-color: #fcfbf7;
+  }
+  .forlog-form .welcome-para1,
+  .signup-form .welcome-para1 {
+    font-size: 1.6rem;
+  }
+
+  .forlog-form {
+    padding: 0 2rem;
+    height: 80%;
+  }
+}
+@media (max-width:480px) {
+
+  /* LOGIN AS PAGE */
+  .loginAs-page-header {
+    height: 13vh;
+    padding: 0.5rem;
+  }
+  .logo-container {
+    width: 6.5rem;
+    height: 4rem;
+  }
+  .loginAs-page-header h1 {
+    font-size: 1.3rem;
+    margin-left: 1.2rem;
+  }
+  .loginAs-page-body h1 {
+    font-size: 2rem;
+  }
+  .loginAs-page-btns {
+    flex-direction: column;
+  }
+  .loginAs-page a {
+    width: 16rem;
+    font-size: 1.6rem;
+    padding: 1rem 1.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+  }
+
+  /* LOGIN PAGE, FORGOT PASSWORD PAGE, SIGN UP PAGE */
+  .forlog-container,
+  .signup-container {
+    height: 80vh;
+    width: 100vw;
+  }
+  .forlog-form,
+  .signup-form {
+    margin: 1rem;
+    padding: 0;
+    height: 88%;
+  }
+  .forlog-form {
+    height: 76%;
+  }
+  .forlog-form .welcome-para1,
+  .signup-form .welcome-para1 {
+    font-size: 1.2rem;
+  }
+  .forlog-form .welcome-para2,
+  .signup-form .welcome-para2 {
+    font-size: 1rem;
+  }
+  .input-group {
+    margin-bottom: 1.5rem;
+  }
+  .forlog-form .forlog-btn,
+  .signup-form .signup-btn {
+    padding: 0.8rem;
+    font-size: 1.1rem;
+  }
+  .form-links a {
+    font-size: 0.9rem;
+  }
+  .form-links .new-reg,
+  .form-links .already-acc {
+    font-size: 0.9rem;
+  }
+  .forlog-form h3 {
+    font-size: 1.4rem;
+  }
+  .forlog-form p {
+    font-size: 0.7rem;
+    margin: 0 0.5rem 2.2rem 0.5rem;
+  }
+  #back-to-login {
+    font-size: 0.9rem;
+  }
+}
