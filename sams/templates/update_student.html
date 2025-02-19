@@ -118,25 +118,31 @@
       <div class="students-main-container">
         <div class="add-new-student-container" style="display: flex">
           <div class="heading">
-            <h1><i class="fa-solid fa-pencil"></i>UPDATE STUDENT</h1>
+            <h1>UPDATE STUDENT</h1>
           </div>
           <form action="?batch_id={{student.batch.id}}&course_id={{student.course.id}}&semester_id={{student.semester.id}}&section_id={{student.section.id}}" method="POST">
             {% csrf_token %}
-            <label for="student_name">Student Name:</label>
-            <br />
-            <input type="text" id="student_name" name="student_name" value="{{student.student_name}}"/>
-            <br />
-            <label for="student_roll">Student Roll No.:</label>
-            <br />
-            <input type="text" id="student_roll" name="student_roll"  value="{{student.student_roll}}"/>
-            <br />
-            <label for="student_phone">Student Phone No.:</label>
-            <br />
-            <input type="text" id="student_phone" name="student_phone"  value="{{student.student_phone}}"/>
-            <br />
+               <div class="info-container"> 
+                  <label for="student_name">Student Name:</label>
+               </div>
+               <div class="input-group pop pupdate">
+                  <input type="text" id="student_name" name="student_name" value="{{student.student_name}}"/>
+               </div>
+               <div class="info-container">
+                  <label for="student_roll">Student Roll No. :</label>
+               </div>
+               <div class="input-group pop pupdate"> 
+                  <input type="text" id="student_roll" name="student_roll"  value="{{student.student_roll}}"/>
+               </div>
+               <div class="info-container"> 
+                  <label for="student_phone">Student Phone No. :</label>
+               </div>
+               <div class="input-group pop pupdate"> 
+                  <input type="text" id="student_phone" name="student_phone"  value="{{student.student_phone}}"/>
+               </div>
             <div class="btns">
                 <button type="submit" class="add-btn">UPDATE</button>
-                <a href="{% url 'manage_students' %}" class="cancel-btn">CANCEL</a>
+                <a href="{% url 'manage_students' %}" class="update-cancel-btn">CANCEL</a>
             </div>
           </form>
         </div>

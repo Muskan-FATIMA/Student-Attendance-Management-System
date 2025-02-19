@@ -116,27 +116,33 @@
       </div>
     {% endif %}
       <div class="courses-main-container">
-        <div class="add-new-course-container" style="display: flex">
+        <div class="add-new-course-container " style="display: flex">
           <div class="heading">
-            <h1><i class="fa-solid fa-pencil"></i>UPDATE COURSE</h1>
+            <h1>UPDATE COURSE</h1>
           </div>
           <form action="?batch_id={{ course.batch.id }}" method="POST">
             {% csrf_token %}
-            <label for="course_name">Course Name:</label>
-            <br />
-            <input type="text" id="course_name" name="course_name" value="{{course.course_name}}" />
-            <br />
-            <label for="course_duration">Course Duration:</label>
-            <br />
-            <input type="number" id="course_duration" name="course_duration" value="{{course.course_duration}}" />
-            <br />
-            <label for="total_semesters">Total Semesters:</label>
-            <br />
-            <input type="number" id="total_semesters" name="total_semesters" value="{{course.total_semesters}}" />
-            <br />
+              <div class="info-container">
+                  <label for="course_name">Course Name:</label>
+              </div>
+              <div class="input-group pop pupdate">
+                  <input type="text" id="course_name" name="course_name" value="{{course.course_name}}" />
+              </div>
+              <div class="info-container">
+                  <label for="course_duration">Course Duration:</label>
+              </div>
+              <div class="input-group pop pupdate">
+                  <input type="number" id="course_duration" name="course_duration" value="{{course.course_duration}}" />
+              </div>
+              <div class="info-container">
+                  <label for="total_semesters">Total Semesters:</label>
+              </div>
+              <div class="input-group pop pupdate">
+                  <input type="number" id="total_semesters" name="total_semesters" value="{{course.total_semesters}}" />
+              </div>
             <div class="btns">
                 <button type="submit" class="add-btn">UPDATE</button>
-                <a href="{% url 'manage_courses' %}" class="cancel-btn">CANCEL</a>
+                <a href="{% url 'manage_courses' %}" class="update-cancel-btn">CANCEL</a>
             </div>
           </form>
         </div>

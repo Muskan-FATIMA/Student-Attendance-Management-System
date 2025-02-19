@@ -118,21 +118,25 @@
         <div class="teachers-main-container">
           <div class="add-new-teacher-container" style="display: flex">
             <div class="heading">
-              <h1><i class="fa-solid fa-pencil"></i>UPDATE TEACHER</h1>
+              <h1>UPDATE TEACHER</h1>
             </div>
             <form action="" method="POST">
                 {% csrf_token %}
-                <label for="teacher_name">Teacher's Username:</label>
-                <br />
-                <input type="text" id="teacher_name" name="teacher_name" value="{{ teacher.username }}" />
-                <br />
-                <label for="teacher_email">Teacher's Email:</label>
-                <br />
-                <input type="email" id="teacher_email" name="teacher_email" value="{{ teacher.email }}" />
-                <br />
+                   <div class="info-container">
+                      <label for="teacher_name">Teacher's Username:</label>
+                   </div>
+                   <div class="input-group pop pupdate">
+                     <input type="text" id="teacher_name" name="teacher_name" value="{{ teacher.username }}" />
+                   </div>
+                   <div class="info-container">  
+                      <label for="teacher_email">Teacher's Email:</label>
+                   </div>
+                    <div class="input-group pop pupdate"> 
+                       <input type="email" id="teacher_email" name="teacher_email" value="{{ teacher.email }}" />
+                    </div>
                 <div class="btns">
                     <button type="submit" class="add-btn">UPDATE</button>
-                    <a href="{% url 'manage_teachers' %}" class="cancel-btn">CANCEL</a>
+                    <a href="{% url 'manage_teachers' %}" class="update-cancel-btn">CANCEL</a>
                 </div>
             </form>
           </div>

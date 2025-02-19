@@ -69,6 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ".add-new-student-container"
   );
 
+
   // ADMIN PROFILE PAGE
   if (profileEditBtn) {
     profileEditBtn.addEventListener("click", () => {
@@ -146,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.addEventListener("click", (event) => {
         event.preventDefault();
       
-      // Hide all popups
+
         if (profileEditPopupBox) profileEditPopupBox.style.display = "none";
         if (passwordChangePopupBox) passwordChangePopupBox.style.display = "none";
         if (addNewTeacherContainer) addNewTeacherContainer.style.display = "none";
@@ -156,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (addNewSubjectContainer) addNewSubjectContainer.style.display = "none";
         if (addNewStudentContainer) addNewStudentContainer.style.display = "none";
 
-      // Restore the main section (Show previous container)
+    
         if (profileContainer) profileContainer.style.display = "block";
         if (teachersListContainer) teachersListContainer.style.display = "block";
         if (batchesListContainer) batchesListContainer.style.display = "block";
@@ -173,7 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('.toggle-password').forEach(button => {
     button.addEventListener('click', function() {
         var passwordField = this.previousElementSibling;
-        if (passwordField && passwordField.type) { 
+        if (passwordField && passwordField.type) {
             var icon = this.querySelector('i');
             if (passwordField.type === 'password') {
                 passwordField.type = 'text';

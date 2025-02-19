@@ -118,17 +118,19 @@
       <div class="subjects-main-container">
         <div class="add-new-subject-container" style="display: flex">
           <div class="heading">
-            <h1><i class="fa-solid fa-pencil"></i>UPDATE SUBJECT</h1>
+            <h1>UPDATE SUBJECT</h1>
           </div>
           <form action="?batch_id={{subject.batch.id}}&course_id={{subject.course.id}}&semester_id={{subject.semester.id}}" method="POST">
             {% csrf_token %}
-            <label for="subject_name">Subject Name:</label>
-            <br />
-            <input type="text" id="subject_name" name="subject_name" value="{{subject.subject_name}}" />
-            <br />
+               <div class="info-container">
+                  <label for="subject_name">Subject Name:</label>
+               </div>
+               <div class="input-group pop pupdate">
+                   <input type="text" id="subject_name" name="subject_name" value="{{subject.subject_name}}" />
+                </div>
             <div class="btns">
                 <button type="submit" class="add-btn">UPDATE</button>
-                <a href="{% url 'manage_subjects' %}" class="cancel-btn">CANCEL</a>
+                <a href="{% url 'manage_subjects' %}" class="update-cancel-btn">CANCEL</a>
             </div>
           </form>
         </div>

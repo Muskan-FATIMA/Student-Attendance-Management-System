@@ -116,20 +116,21 @@
       </div>
     {% endif %}
       <div class="batches-main-container">
-       
         <div class="add-new-batch-container" style="display: flex">
           <div class="heading">
-            <h1><i class="fa-solid fa-pencil"></i>UPDATE BATCH</h1>
+            <h1>UPDATE BATCH</h1>
           </div>
           <form action="" method="POST">
             {% csrf_token %}
-            <label for="batch_year">Batch Year:</label>
-            <br />
-            <input type="number" id="batch_year" name="batch_year"  value="{{ batch.batch_year }}"/>
-            <br />
+            <div class="info-container">
+            <label>Batch Year</label>
+          </div>
+            <div class="input-group pop pupdate">
+              <input type="number" id="batch_year" name="batch_year"  value="{{ batch.batch_year }}"/>
+            </div>
             <div class="btns">
               <button type="submit" class="add-btn">UPDATE</button>
-              <a href="{% url 'manage_batches' %}" class="cancel-btn">CANCEL</a>
+              <a href="{% url 'manage_batches' %}" class="update-cancel-btn">CANCEL</a>
             </div>
           </form>
         </div>

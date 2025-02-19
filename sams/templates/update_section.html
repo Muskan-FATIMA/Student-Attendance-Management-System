@@ -118,17 +118,19 @@
       <div class="sections-main-container">
         <div class="add-new-section-container" style="display: flex">
           <div class="heading">
-            <h1><i class="fa-solid fa-pencil"></i>UPDATE SECTION</h1>
+            <h1>UPDATE SECTION</h1>
           </div>
           <form action="?batch_id={{section.batch.id}}&course_id={{section.course.id}}&semester_id={{section.semester.id}}" method="POST">
             {% csrf_token %}
-            <label for="section_name">Section Name:</label>
-            <br />
-            <input type="text" id="section_name" name="section_name" value="{{section.section_name}}" />
-            <br />
+              <div class="info-container">
+                  <label for="section_name">Section Name:</label>
+              </div>
+              <div class="input-group pop pupdate">  
+                  <input type="text" id="section_name" name="section_name" value="{{section.section_name}}" />
+              </div>
             <div class="btns">
                 <button type="submit" class="add-btn">UPDATE</button>
-                <a href="{% url 'manage_sections' %}" class="cancel-btn">CANCEL</a>
+                <a href="{% url 'manage_sections' %}" class="update-cancel-btn">CANCEL</a>
             </div>
           </form>
         </div>

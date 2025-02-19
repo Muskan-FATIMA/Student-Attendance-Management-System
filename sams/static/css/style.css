@@ -765,6 +765,9 @@ td.absent {
   outline: none;
   box-shadow: 0 0 5px #009688;
 }
+.pupdate input{
+  padding: 0.8rem 1rem;
+}
 .profile-edit-popup-box .btns,
 .password-change-popup-box .btns {
   display: flex;
@@ -1089,8 +1092,8 @@ input[type="checkbox"] {
   justify-content: center;
   align-items: center;
   position: fixed;
-  top: 15%;
-  left: 40%;
+  top: 18%;
+  left: 45%;
   width: 40%;
   max-width: 400px;
   background-color: transparent;
@@ -1192,11 +1195,18 @@ input[type="checkbox"] {
   background-color: black;
 }
 .add-new-teacher-container .cancel-btn,
+.add-new-teacher-container .update-cancel-btn,
 .add-new-batch-container .cancel-btn,
+.add-new-batch-container .update-cancel-btn,
 .add-new-course-container .cancel-btn,
+.add-new-course-container .updatecancel-btn,
 .add-new-section-container .cancel-btn,
+.add-new-section-container .update-cancel-btn,
 .add-new-subject-container .cancel-btn,
-.add-new-student-container .cancel-btn {
+.add-new-subject-container .update-cancel-btn,
+.add-new-student-container .cancel-btn,
+.add-new-student-container .update-cancel-btn
+ {
   width: 100px;
   padding: 10px 20px;
   background-color: transparent;
@@ -1210,11 +1220,17 @@ input[type="checkbox"] {
   transition: all 0.3s ease-in-out;
 }
 .add-new-teacher-container .cancel-btn:hover,
+.add-new-teacher-container .update-cancel-btn:hover,
 .add-new-batch-container .cancel-btn:hover,
+.add-new-batch-container .update-cancel-btn:hover,
 .add-new-course-container .cancel-btn:hover,
+.add-new-course-container .updatecancel-btn:hover,
 .add-new-section-container .cancel-btn:hover,
+.add-new-section-container .update-cancel-btn:hover,
 .add-new-subject-container .cancel-btn:hover,
-.add-new-student-container .cancel-btn:hover {
+.add-new-subject-container .update-cancel-btn:hover,
+.add-new-student-container .cancel-btn:hover,
+.add-new-student-container .update-cancel-btn:hover{
   background-color: #ddd;
 }
 .print-record-btn {
