@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Student</title>
+    <title>Update Batch</title>
     <link rel="icon" href="{% static "images/favicon.png" %}" type="image/png">
     <link
     href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
@@ -22,8 +22,8 @@
   <div class="a-page">
     <aside class="a-sidebar">
       <img
-      src="{% static "images/su-logo-white.png" %}"
-      alt="SU-logo-white"
+        src="{% static "images/su-logo-white.png" %}"
+        alt="SU-logo-white"
         class="su-logo-white"
       />
       <div class="line-below-logo"></div>
@@ -49,9 +49,9 @@
         </a>
         <a 
         href="{% url "manage_batches" %}" 
-        target="_blank" class="batches">
-          <i class="fa-regular fa-calendar-plus"></i>
-          <span>Batches</span>
+        class="batches">
+          <i class="fa-regular fa-calendar-plus" style="color: #fdb813"></i>
+          <span style="color: #fdb813">Batches</span>
         </a>
         <a 
         href="{% url "manage_courses" %}" 
@@ -73,18 +73,24 @@
         </a>
         <a 
         href="{% url "manage_students" %}" 
-        class="students">
-          <i class="fa-solid fa-graduation-cap" style="color: #fdb813"></i>
-          <span style="color: #fdb813">Students</span>
+        target="_blank" class="students">
+          <i class="fa-solid fa-graduation-cap"></i>
+          <span>Students</span>
         </a>
         <a
-          href="{% url "manage_attendance_record" %}"
-          target="_blank"
-          class="attendance-record"
-        >
-          <i class="fa-regular fa-clipboard"></i>
-          <span>Attendance Record</span>
-        </a>
+        href="{% url "manage_attendance_record" %}"
+        target="_blank" class="attendance-record"
+      >
+        <i class="fa-regular fa-clipboard"></i>
+        <span>Attendance Record</span>
+      </a>
+      <a
+      href="{% url "attendance_analytics" %}"
+      target="_blank" class="attendance-analytics"
+    >
+      <i class="fa-solid fa-chart-line"></i>
+      <span>Attendance Analytics</span>
+    </a>
         <div class="line-above-logout"></div>
         <a 
         href="{% url "logout" %}" 
@@ -103,7 +109,7 @@
     </aside>
     <div class="a-main">
       <div class="a-heading">
-        <h1>STUDENTS</h1>
+        <h1>BATCHES</h1>
       </div>
       {% if messages %}
       <div class="messages">
@@ -115,39 +121,27 @@
         {% endfor %}
       </div>
     {% endif %}
-      <div class="students-main-container">
-        <div class="add-new-student-container" style="display: flex">
+      <div class="batches-main-container">
+        <div class="add-new-batch-container" style="display: flex">
           <div class="heading">
-            <h1>UPDATE STUDENT</h1>
+            <h1>UPDATE BATCH</h1>
           </div>
-          <form action="?batch_id={{student.batch.id}}&course_id={{student.course.id}}&semester_id={{student.semester.id}}&section_id={{student.section.id}}" method="POST">
+          <form action="" method="POST">
             {% csrf_token %}
-               <div class="info-container"> 
-                  <label for="student_name">Student Name:</label>
-               </div>
-               <div class="input-group pop pupdate">
-                  <input type="text" id="student_name" name="student_name" value="{{student.student_name}}"/>
-               </div>
-               <div class="info-container">
-                  <label for="student_roll">Student Roll No. :</label>
-               </div>
-               <div class="input-group pop pupdate"> 
-                  <input type="text" id="student_roll" name="student_roll"  value="{{student.student_roll}}"/>
-               </div>
-               <div class="info-container"> 
-                  <label for="student_phone">Student Phone No. :</label>
-               </div>
-               <div class="input-group pop pupdate"> 
-                  <input type="text" id="student_phone" name="student_phone"  value="{{student.student_phone}}"/>
-               </div>
+            <div class="info-container">
+            <label>Batch Year</label>
+          </div>
+            <div class="input-group pop pupdate">
+              <input type="number" id="batch_year" name="batch_year"  value="{{ batch.batch_year }}"/>
+            </div>
             <div class="btns">
-                <button type="submit" class="add-btn">UPDATE</button>
-                <a href="{% url 'manage_students' %}" class="update-cancel-btn">CANCEL</a>
+              <button type="submit" class="add-btn">UPDATE</button>
+              <a href="{% url 'manage_batches' %}" class="update-cancel-btn">CANCEL</a>
             </div>
           </form>
         </div>
       </div>
       </div>
       <script src="{% static "js/index.js" %}" ></script>
-</body>
+    </body>
 </html>

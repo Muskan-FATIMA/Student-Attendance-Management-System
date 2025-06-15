@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Subjects</title>
+    <title>Manage Students</title>
     <link rel="icon" href="{% static "images/favicon.png" %}" type="image/png">
     <link
     href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
@@ -67,24 +67,30 @@
         </a>
         <a 
         href="{% url "manage_subjects" %}" 
-        class="subjects">
-          <i class="fa-solid fa-book-open" style="color: #fdb813"></i>
-          <span style="color: #fdb813">Subjects</span>
+        target="_blank" class="subjects">
+          <i class="fa-solid fa-book-open"></i>
+          <span>Subjects</span>
         </a>
         <a 
         href="{% url "manage_students" %}" 
-        target="_blank" class="students">
-          <i class="fa-solid fa-graduation-cap"></i>
-          <span>Students</span>
+        class="students">
+          <i class="fa-solid fa-graduation-cap" style="color: #fdb813"></i>
+          <span style="color: #fdb813">Students</span>
         </a>
         <a
-          href="{% url "manage_attendance_record" %}"
-          target="_blank"
-          class="attendance-record"
-        >
-          <i class="fa-regular fa-clipboard"></i>
-          <span>Attendance Record</span>
-        </a>
+        href="{% url "manage_attendance_record" %}"
+        target="_blank" class="attendance-record"
+      >
+        <i class="fa-regular fa-clipboard"></i>
+        <span>Attendance Record</span>
+      </a>
+      <a
+      href="{% url "attendance_analytics" %}"
+      target="_blank" class="attendance-analytics"
+    >
+    <i class="fa-solid fa-chart-line"></i>
+    <span>Attendance Analytics</span>
+    </a>
         <div class="line-above-logout"></div>
         <a 
         href="{% url "logout" %}" 
@@ -103,7 +109,7 @@
     </aside>
     <div class="a-main">
       <div class="a-heading">
-        <h1>LIST OF ALL SUBJECTS - {{selected_course.course_name}} ({{selected_batch.batch_year}}) Sem {{selected_semester.semester_num}}</h1>
+        <h1>LIST OF ALL STUDENTS - {{selected_course.course_name}} ({{selected_batch.batch_year}}) Sem {{selected_semester.semester_num}} ({{selected_section.section_name}})</h1>
       </div>
       {% if messages %}
       <div class="messages">
@@ -115,9 +121,9 @@
         {% endfor %}
       </div>
     {% endif %}
-      <div class="subjects-main-container">
-        <div class="subjects-list-container">
-          <form method="GET" action="{% url 'manage_subjects' %}">
+      <div class="students-main-container">
+        <div class="students-list-container">
+          <form method="GET" action="{% url 'manage_students' %}">
             <div class="dropdown-section">
               <div class="batch">
                 <label for="batch_selector">Choose Batch</label>
@@ -150,37 +156,52 @@
                   {% endfor %}
               </select>
               </div>
+                <div class="section">
+                  <label for="section_selector">Choose Section</label>
+                  <select name="section_id" id="section_selector" onchange="this.form.submit()">
+                    {% for section in sections %}
+                      <option value="{{ section.id }}" {% if section.id == selected_section.id %}selected{% endif %}>
+                        {{ section.section_name }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </div>
               </form>  
-          <div class="add-new-subject-btn">
+          <div class="add-new-student-btn">
             <i class="fa-solid fa-square-plus"></i>
-            ADD NEW SUBJECT
+            ADD NEW STUDENT
           </div>
+       
         </div>
-         <table border="3" class="subject-table">
+         <table border="3" class="student-table">
             <tr>
-              <th>Subject_Id</th>
-              <th>Subject Name</th>
+              <th>Student_ID</th>
+              <th>Name</th>
+              <th>Roll No.</th>
+              <th>Phone No.</th>
               <th colspan="2">Actions</th>
             </tr>
-            {% for subject in subjects %}
+            {% for student in students %}
             <tr>
-              <td>{{ subject.subject_id }}</td>
-              <td>{{ subject.subject_name }}</td>
-              <td class="edit"><a href="{% url 'update_subject' subject.subject_id %}"><i class="fa-solid fa-pencil"></i></a></td>
-              <td class="delete"><a href="{% url 'delete_subject' subject.subject_id %}"><i class="fa-solid fa-trash-can"></i></a></td>
+              <td>{{ student.student_id }}</td>
+              <td>{{ student.student_name }}</td>
+              <td>{{ student.student_roll }}</td>
+              <td>{{ student.student_phone }}</td>
+              <td class="edit"><a href="{% url 'update_student' student.student_id %}"><i class="fa-solid fa-pencil"></i></a></td>
+              <td class="delete"><a href="{% url 'delete_student' student.student_id %}"><i class="fa-solid fa-trash-can"></i></a></td>
             </tr>
           {% empty %}
             <tr>
-              <td colspan="4">No subjects found.</td>
+              <td colspan="6">No students found.</td>
             </tr>
           {% endfor %}
           </table>
         </div>
-        <div class="add-new-subject-container">
+        <div class="add-new-student-container">
           <div class="heading">
-            <h1>ADD NEW SUBJECT</h1>
+            <h1>ADD NEW STUDENT</h1>
           </div>
-          <form action="{% url 'manage_subjects' %}" method="POST">
+          <form action="{% url 'manage_students' %}" method="POST">
             {% csrf_token %}
             <div class="info-container">
               <label>Batch:</label>
@@ -199,14 +220,27 @@
               <span>{{ selected_semester.semester_num }}</span>
               <input type="hidden" name="choose_semester" value="{{ selected_semester.id }}">
           </div>
-            <br>
-            <div class="input-group pop">
-              <i class="fa-regular fa-keyboard icon"></i>
-              <input type="text" id="subject_name" name="subject_name" placeholder="Subject Name" required />
+          <div class="info-container">
+              <label>Section:</label>
+              <span>{{ selected_section.section_name }}</span>
+              <input type="hidden" name="choose_section" value="{{ selected_section.id }}">
             </div>
+            <br>
+          <div class="input-group pop">
+            <i class="fa-regular fa-keyboard icon"></i>
+            <input type="text" id="student_name" name="student_name" placeholder="Student Name" required/>
+          </div>
+          <div class="input-group pop">
+              <i class="fa-regular fa-keyboard icon"></i>
+            <input type="text" id="student_roll" name="student_roll" placeholder="Student Roll No." required/>
+          </div>
+          <div class="input-group pop">
+            <i class="fa-regular fa-keyboard icon"></i>
+            <input type="text" id="student_phone" maxlength="10" name="student_phone" placeholder="Student Phone No." required/>
+          </div>
             <div class="btns">
               <button type="submit" class="add-btn">ADD</button>
-              <a href="{% url 'manage_subjects' %}" class="cancel-btn">CANCEL</a>
+              <a href="{% url 'manage_students' %}" class="cancel-btn">CANCEL</a>
             </div>
           </form>
         </div>

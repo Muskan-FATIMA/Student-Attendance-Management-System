@@ -331,13 +331,12 @@ body {
   position: relative;
   /* background-color: #771401; */
   background-color: #8B0000;
-  padding: 0 1rem;
+  padding: 0 0rem;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  
 }
 .su-logo-white {
   width: 50%;
@@ -363,7 +362,7 @@ body {
   color: #fcfbf7;
   text-decoration: none;
   transition: 0.3s;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
   border-radius: 5px;
 }
 .a-sidebar-links a:hover{
@@ -392,6 +391,7 @@ body {
 .subjects,
 .students,
 .attendance-record,
+.attendance-analytics,
 .teacher-profile,
 .mark-attendance,
 .teacher-attendance-record,
@@ -827,6 +827,7 @@ td.absent {
 .subjects-main-container,
 .students-main-container,
 .a-r-main-container,
+.a-a-main-container,
 .m-a-main-container {
   flex-grow: 1;
   background-color: #fcf4e5;
@@ -841,6 +842,7 @@ td.absent {
 .subjects-list-container,
 .students-list-container,
 .a-r-list-container,
+.a-a-list-container,
 .m-a-list-container {
   width: 100%;
   display: flex;
@@ -912,6 +914,7 @@ td.absent {
   padding: 2.6rem 3rem;
 }
 .a-r-header,
+.a-a-header,
 .m-a-header {
   justify-content: center;
 }
@@ -922,6 +925,7 @@ td.absent {
 .subjects-list-container h1,
 .students-list-container h1,
 .a-r-list-container h1,
+.a-a-list-container h1,
 .m-a-list-container h1 {
   font-size: 1.5rem;
   letter-spacing: 0.1rem;
@@ -935,6 +939,7 @@ td.absent {
 .subjects-list-container i,
 .students-list-container i,
 .a-r-list-container i,
+.a-a-list-container i,
 .m-a-list-container i {
   cursor: pointer;
 }
@@ -974,6 +979,7 @@ td.absent {
 .subject-table,
 .student-table,
 .a-r-table,
+.a-a-table,
 .m-a-table {
   width:70%;
   margin: auto;
@@ -1028,6 +1034,7 @@ td.absent {
 .subjects-main-container a,
 .students-main-container a,
 .a-r-main-container a,
+.a-a-main-container a,
 .m-a-main-container a {
   text-decoration: none;
   color: black;
@@ -1039,6 +1046,7 @@ td.absent {
 .subjects-list-container th,
 .students-list-container th,
 .a-r-list-container th,
+.a-a-list-container th,
 .m-a-list-container th {
   border-bottom: 2px solid black;
   padding: 0.5rem;
@@ -1051,6 +1059,7 @@ td.absent {
 .subjects-list-container td,
 .students-list-container td,
 .a-r-list-container td,
+.a-a-list-container td,
 .m-a-list-container td {
   font-size: 0.95rem;
   padding: 0.5rem;

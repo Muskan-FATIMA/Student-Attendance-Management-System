@@ -78,12 +78,19 @@
           <span>Students</span>
         </a>
         <a
-          href="{% url "manage_attendance_record" %}"
-          class="attendance-record"
-        >
-          <i class="fa-regular fa-clipboard" style="color: #fdb813"></i>
-          <span style="color: #fdb813">Attendance Record</span>
-        </a>
+        href="{% url "manage_attendance_record" %}"
+        class="attendance-record"
+      >
+        <i class="fa-regular fa-clipboard" style="color: #fdb813"></i>
+        <span style="color: #fdb813">Attendance Record</span>
+      </a>
+      <a
+      href="{% url "attendance_analytics" %}"
+      target="_blank" class="attendance-analytics"
+    >
+    <i class="fa-solid fa-chart-line"></i>
+    <span>Attendance Analytics</span>
+    </a>
         <div class="line-above-logout"></div>
         <a 
         href="{% url "logout" %}" 

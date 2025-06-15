@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Course</title>
+    <title>Update Section</title>
     <link rel="icon" href="{% static "images/favicon.png" %}" type="image/png">
     <link
     href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
@@ -55,15 +55,15 @@
         </a>
         <a 
         href="{% url "manage_courses" %}" 
-        class="courses">
-          <i class="fa-solid fa-bookmark" style="color: #fdb813"></i>
-          <span style="color: #fdb813">Courses</span>
+        target="_blank" class="courses">
+          <i class="fa-solid fa-bookmark"></i>
+          <span>Courses</span>
         </a>
         <a 
         href="{% url "manage_sections" %}" 
-        target="_blank" class="sections">
-          <i class="fa-solid fa-table-columns"></i>
-          <span>Sections</span>
+        class="sections">
+          <i class="fa-solid fa-table-columns" style="color: #fdb813"></i>
+          <span style="color: #fdb813">Sections</span>
         </a>
         <a 
         href="{% url "manage_subjects" %}" 
@@ -78,13 +78,19 @@
           <span>Students</span>
         </a>
         <a
-          href="{% url "manage_attendance_record" %}"
-          target="_blank"
-          class="attendance-record"
-        >
-          <i class="fa-regular fa-clipboard"></i>
-          <span>Attendance Record</span>
-        </a>
+        href="{% url "manage_attendance_record" %}"
+        target="_blank" class="attendance-record"
+      >
+        <i class="fa-regular fa-clipboard"></i>
+        <span>Attendance Record</span>
+      </a>
+      <a
+      href="{% url "attendance_analytics" %}"
+      target="_blank" class="attendance-analytics"
+    >
+    <i class="fa-solid fa-chart-line"></i>
+    <span>Attendance Analytics</span>
+    </a>
         <div class="line-above-logout"></div>
         <a 
         href="{% url "logout" %}" 
@@ -103,7 +109,7 @@
     </aside>
     <div class="a-main">
       <div class="a-heading">
-        <h1>COURSES</h1>
+        <h1>SECTIONS</h1>
       </div>
       {% if messages %}
       <div class="messages">
@@ -115,34 +121,22 @@
         {% endfor %}
       </div>
     {% endif %}
-      <div class="courses-main-container">
-        <div class="add-new-course-container " style="display: flex">
+      <div class="sections-main-container">
+        <div class="add-new-section-container" style="display: flex">
           <div class="heading">
-            <h1>UPDATE COURSE</h1>
+            <h1>UPDATE SECTION</h1>
           </div>
-          <form action="?batch_id={{ course.batch.id }}" method="POST">
+          <form action="?batch_id={{section.batch.id}}&course_id={{section.course.id}}&semester_id={{section.semester.id}}" method="POST">
             {% csrf_token %}
               <div class="info-container">
-                  <label for="course_name">Course Name:</label>
+                  <label for="section_name">Section Name:</label>
               </div>
-              <div class="input-group pop pupdate">
-                  <input type="text" id="course_name" name="course_name" value="{{course.course_name}}" />
-              </div>
-              <div class="info-container">
-                  <label for="course_duration">Course Duration:</label>
-              </div>
-              <div class="input-group pop pupdate">
-                  <input type="number" id="course_duration" name="course_duration" value="{{course.course_duration}}" />
-              </div>
-              <div class="info-container">
-                  <label for="total_semesters">Total Semesters:</label>
-              </div>
-              <div class="input-group pop pupdate">
-                  <input type="number" id="total_semesters" name="total_semesters" value="{{course.total_semesters}}" />
+              <div class="input-group pop pupdate">  
+                  <input type="text" id="section_name" name="section_name" value="{{section.section_name}}" />
               </div>
             <div class="btns">
                 <button type="submit" class="add-btn">UPDATE</button>
-                <a href="{% url 'manage_courses' %}" class="update-cancel-btn">CANCEL</a>
+                <a href="{% url 'manage_sections' %}" class="update-cancel-btn">CANCEL</a>
             </div>
           </form>
         </div>

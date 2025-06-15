@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Batch</title>
+    <title>Manage Teachers</title>
     <link rel="icon" href="{% static "images/favicon.png" %}" type="image/png">
     <link
     href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
@@ -31,7 +31,7 @@
         <a 
         href="{% url "admin_profile" %}" 
         target="_blank" class="profile">
-          <i class="fa-solid fa-user"></i>
+          <i class="fa-solid fa-user" ></i>
           <span>Manage Your Profile</span>
         </a> 
         <a 
@@ -43,15 +43,15 @@
         
         <a 
         href="{% url "manage_teachers" %}" 
-        target="_blank" class="teachers">
-          <i class="fa-solid fa-chalkboard-user"></i>
-          <span>Teachers</span>
+        class="teachers">
+          <i class="fa-solid fa-chalkboard-user" style="color: #fdb813"></i>
+          <span style="color: #fdb813">Teachers</span>
         </a>
         <a 
         href="{% url "manage_batches" %}" 
-        class="batches">
-          <i class="fa-regular fa-calendar-plus" style="color: #fdb813"></i>
-          <span style="color: #fdb813">Batches</span>
+        target="_blank" class="batches">
+          <i class="fa-regular fa-calendar-plus"></i>
+          <span>Batches</span>
         </a>
         <a 
         href="{% url "manage_courses" %}" 
@@ -78,13 +78,19 @@
           <span>Students</span>
         </a>
         <a
-          href="{% url "manage_attendance_record" %}"
-          target="_blank"
-          class="attendance-record"
-        >
-          <i class="fa-regular fa-clipboard"></i>
-          <span>Attendance Record</span>
-        </a>
+        href="{% url "manage_attendance_record" %}"
+        target="_blank" class="attendance-record"
+      >
+        <i class="fa-regular fa-clipboard"></i>
+        <span>Attendance Record</span>
+      </a>
+      <a
+      href="{% url "attendance_analytics" %}"
+      target="_blank" class="attendance-analytics"
+    >
+    <i class="fa-solid fa-chart-line"></i>
+    <span>Attendance Analytics</span>
+    </a>
         <div class="line-above-logout"></div>
         <a 
         href="{% url "logout" %}" 
@@ -103,7 +109,7 @@
     </aside>
     <div class="a-main">
       <div class="a-heading">
-        <h1>BATCHES</h1>
+        <h1>LIST OF ALL TEACHERS</h1>
       </div>
       {% if messages %}
       <div class="messages">
@@ -115,22 +121,65 @@
         {% endfor %}
       </div>
     {% endif %}
-      <div class="batches-main-container">
-        <div class="add-new-batch-container" style="display: flex">
+      <div class="teachers-main-container">
+        <div class="teachers-list-container">
+          <div class="dropdown-section teacherbatch">
+            <div class="add-new-teacher-btn">
+              <i class="fa-solid fa-square-plus"></i>
+              ADD NEW TEACHER
+            </div>
+          </div>
+          <table border="3" class="teacher-table">
+            <tr>
+              <th>Teacher_ID</th>
+              <th>Username</th>
+              <th>Email ID</th>
+              <th colspan="2">Actions</th>
+            </tr>
+            {% for teacher in teachers %}
+            <tr>
+              <td>{{teacher.id}}</td>
+              <td>{{teacher.username}}</td>
+              <td>{{teacher.email}}</td>
+              <td class="edit">
+                <a href="{% url 'update_teacher' teacher.id %}">
+                  <i class="fa-solid fa-pencil"></i>
+                </a>
+              </td>
+              <td class="delete">
+                <a href="{% url 'delete_teacher' teacher.id %}" onclick="return confirm('Are you sure?');">
+                    <i class="fa-solid fa-trash-can"></i>
+                </a>
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No teachers found.</td>
+            </tr>
+        {% endfor %}
+        </table>
+        </div>
+        <div class="add-new-teacher-container">
           <div class="heading">
-            <h1>UPDATE BATCH</h1>
+            <h1>ADD NEW TEACHER</h1>
           </div>
           <form action="" method="POST">
             {% csrf_token %}
-            <div class="info-container">
-            <label>Batch Year</label>
-          </div>
-            <div class="input-group pop pupdate">
-              <input type="number" id="batch_year" name="batch_year"  value="{{ batch.batch_year }}"/>
+            <div class="input-group pop">
+              <i class="fa-regular fa-keyboard icon"></i>
+              <input type="text" id="teacher_name" name="teacher_name" placeholder="Teacher's Username" required/>
             </div>
+            <div class="input-group pop">
+              <i class="fa-regular fa-keyboard icon"></i>
+              <input type="email" id="teacher_email" name="teacher_email" placeholder="Teacher's Email" required/>
+          </div>
+          <div class="input-group pop">
+              <i class="fa-regular fa-keyboard icon"></i>
+              <input type="password" id="teacher_password" name="teacher_password" placeholder="Teacher's Password" required/>
+          </div> 
             <div class="btns">
-              <button type="submit" class="add-btn">UPDATE</button>
-              <a href="{% url 'manage_batches' %}" class="update-cancel-btn">CANCEL</a>
+              <button type="submit" class="add-btn">ADD</button>
+              <a href="{% url 'manage_teachers' %}" class="cancel-btn">CANCEL</a>
             </div>
           </form>
         </div>

@@ -807,6 +807,79 @@ def manage_attendance_record(request):
         "selected_date": selected_date,
     })
 
+# ------------------- STUDENT ATTENDANCE ANALYTICS PAGE --------------------
+def attendance_analytics(request):
+    batches = Batch.objects.all()
+    selected_batch = request.GET.get('batch')
+    selected_course = request.GET.get('course')
+    selected_semester = request.GET.get('semester')
+    selected_section = request.GET.get('section')
+    selected_subject = request.GET.get('subject')
+
+    analytics_data = None
+    courses = semesters = sections = subjects = []
+
+    if selected_batch:
+        courses = Course.objects.filter(batch_id=selected_batch)
+    if selected_course:
+        semesters = Semester.objects.filter(course_id=selected_course)
+    if selected_semester:
+        sections = Section.objects.filter(semester_id=selected_semester)
+        subjects = Subject.objects.filter(semester_id=selected_semester)
+
+    if selected_batch and selected_course and selected_semester and selected_section and selected_subject:
+        students = Student.objects.filter(
+            batch_id=selected_batch,
+            course_id=selected_course,
+            semester_id=selected_semester,
+            section_id=selected_section
+        )
+        total_days = Attendance.objects.filter(
+            batch_id=selected_batch,
+            course_id=selected_course,
+            semester_id=selected_semester,
+            section_id=selected_section,
+            subject_id=selected_subject
+        ).values('date').distinct().count()
+
+        analytics_data = []
+
+        for student in students:
+            present_days = Attendance.objects.filter(
+                student=student,
+                subject_id=selected_subject,
+                is_present=True
+            ).count()
+            absent_days = total_days - present_days
+            percentage = round((present_days / total_days) * 100, 2) if total_days > 0 else 0
+            fine_required = percentage < 60
+
+            analytics_data.append({
+                'student': student,
+                'present_days': present_days,
+                'absent_days': absent_days,
+                'percentage': percentage,
+                'fine_required': fine_required
+            })
+
+    context = {
+        'batches': batches,
+        'courses': courses,
+        'semesters': semesters,
+        'sections': sections,
+        'subjects': subjects,
+        'selected_batch': selected_batch,
+        'selected_course': selected_course,
+        'selected_semester': selected_semester,
+        'selected_section': selected_section,
+        'selected_subject': selected_subject,
+        'analytics_data': analytics_data,
+    }
+
+    return render(request, 'attendance_analytics.html', context)
+
+
+
 # ------------------- MARK ATTENDANCE PAGE --------------------
 def mark_attendance(request):
     batches = Batch.objects.prefetch_related('courses').all()
