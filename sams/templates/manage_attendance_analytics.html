@@ -1,0 +1,249 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Analytics</title>
+    <link rel="icon" href="{% static "images/favicon.png" %}" type="image/png">
+    <link
+    href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  />
+  <link rel="stylesheet" href="{% static "css/style.css" %}" />
+  <link rel="stylesheet" href="{% static "css/responsive.css" %}" />
+</head>
+<body>
+  <div class="hamburger" id="hamburger">
+    <i class="fa-solid fa-bars"></i>
+  </div>
+    <div class="a-page">
+      <aside class="a-sidebar" id="sidebar">   
+        <div class="close-btn" id="closeBtn">
+         <i class="fa-solid fa-xmark"></i>
+       </div>
+      <img
+      src="{% static "images/su-logo-white.png" %}"
+      alt="SU-logo-white"
+        class="su-logo-white"
+      />
+      <div class="line-below-logo"></div>
+      <div class="a-sidebar-links">
+     <a 
+          href="{% url "admin_profile" %}" 
+          class="profile">
+            <i class="fa-solid fa-user"></i>
+            <span>Manage Your Profile</span>
+          </a> 
+          <a 
+          href="{% url "dashboard" %}" 
+         class="dashboard">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Dashboard</span>
+          </a>
+          
+          <a 
+          href="{% url "manage_teachers" %}" 
+          class="teachers">
+            <i class="fa-solid fa-chalkboard-user"></i>
+            <span>Teachers</span>
+          </a>
+          <a 
+          href="{% url "manage_batches" %}" 
+          class="batches">
+            <i class="fa-regular fa-calendar-plus"></i>
+            <span>Batches</span>
+          </a>
+          <a 
+          href="{% url "manage_courses" %}" 
+          class="courses">
+            <i class="fa-solid fa-bookmark"></i>
+            <span>Courses</span>
+          </a>
+          <a 
+          href="{% url "manage_sections" %}" 
+         class="sections">
+            <i class="fa-solid fa-table-columns"></i>
+            <span>Sections</span>
+          </a>
+          <a 
+          href="{% url "manage_subjects" %}"
+          class="subjects">
+            <i class="fa-solid fa-book-open"></i>
+            <span>Subjects</span>
+          </a>
+          <a 
+          href="{% url "manage_students" %}" 
+          class="students">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>Students</span>
+          </a>
+          <a
+            href="{% url "manage_attendance_record" %}"
+            class="attendance-record"
+          >
+            <i class="fa-regular fa-clipboard"></i>
+            <span>Attendance Record</span>
+          </a>
+             <a
+        href="{% url "manage_attendance_analytics" %}"
+        class="analytics"
+      >
+      <i class="fa-solid fa-chart-line" style="color: #fdb813"></i>
+        <span style="color: #fdb813">Attendance Analytics</span>
+      </a>
+        <div class="line-above-logout"></div>
+          <a 
+          href="{% url "logout" %}" 
+          class="logout">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>Logout</span>
+          </a>
+           <form action="{% url 'delete_admin_account' %}" method="POST" onsubmit="return confirm('Are you sure you want to delete your account?');">
+            {% csrf_token %}
+            <a class="delete-btn-acnhortag">
+            <i class="fa-solid fa-trash"></i>
+           <span> <button type="submit" class="delete-btn">Delete Account</button></span>
+          </a>
+        </form>
+      </div>
+    </aside>
+    <div class="a-main">
+      <div class="a-heading">
+      <h1>ATTENDANCE ANALYTICS</h1>
+      </div>
+      {% if messages %}
+      <div class="messages">
+        {% for message in messages %}
+          <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">
+            <button class="close-btn" onclick="this.parentElement.style.display='none';"><i class="fa-solid fa-xmark"></i></button>
+            <p>{{ message }}</p>
+          </div>
+        {% endfor %}
+      </div>
+        {% endif %}
+      <div class="a-a-main-container">
+        <div class="a-a-list-container">
+         <form method="get" id="filter-form">
+           <button class="filter-toggle" id="filterToggleBtn">
+                  <i class="fa-solid fa-filter"></i> Show Filters
+                   </button>
+              <div id="filterOptions" class="dropdown-section hide">
+          <!-- Batch Dropdown -->
+             <div class="batch">
+               <label for="choose_section">Choose Batch</label>
+          <select name="batch" onchange="this.form.submit()">
+             <option value="" disabled selected>Batch</option>
+            {% for batch in batches %}
+              <option value="{{ batch.id }}" {% if batch.id|stringformat:"s" == selected_batch %}selected{% endif %}>
+                {{ batch.batch_year }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+          <!-- Course Dropdown -->
+          {% if courses %}
+          <div class="course">
+              <label for="choose_section">Choose Course</label>
+            <select name="course" onchange="this.form.submit()">
+               <option value="" disabled selected>Course</option>
+              {% for course in courses %}
+                <option value="{{ course.id }}" {% if course.id|stringformat:"s" == selected_course %}selected{% endif %}>
+                  {{ course.course_name }}
+                </option>
+              {% endfor %}
+            </select>
+            </div>
+          {% endif %}
+        
+          <!-- Semester Dropdown -->
+          {% if semesters %}
+           <div class="semester">
+             <label for="choose_section">Choose Semester</label>
+            <select name="semester" onchange="this.form.submit()">
+              <option value="" disabled selected>Semester</option>
+              {% for sem in semesters %}
+                <option value="{{ sem.id }}" {% if sem.id|stringformat:"s" == selected_semester %}selected{% endif %}>
+                  Semester {{ sem.semester_num }}
+                </option>
+              {% endfor %}
+            </select>
+            </div>
+          {% endif %}
+        
+          <!-- Section Dropdown -->
+          {% if sections %}
+           <div class="section">
+             <label for="choose_section">Choose Section</label>
+            <select name="section" onchange="this.form.submit()">
+              <option value="" disabled selected>Section</option>
+              {% for sec in sections %}
+                <option value="{{ sec.id }}" {% if sec.id|stringformat:"s" == selected_section %}selected{% endif %}>
+                  {{ sec.section_name }}
+                </option>
+              {% endfor %}
+            </select>
+            </div>
+          {% endif %}
+        
+          <!-- Subject Dropdown -->
+          {% if subjects %}
+           <div class="subject">
+             <label for="choose_section">Choose Subject</label>
+            <select name="subject" onchange="this.form.submit()">
+             <option value="" disabled selected>Subject</option>
+              {% for subj in subjects %}
+                <option value="{{ subj.id }}" {% if subj.id|stringformat:"s" == selected_subject %}selected{% endif %}>
+                  {{ subj.subject_name }}
+                </option>
+              {% endfor %}
+            </select>
+            </div>
+          {% endif %}
+          </div>
+        </form>
+        
+        <!-- Attendance Analytics Table -->
+        {% if analytics_data %}
+          <table border="3" class="analytics-table">
+        
+              <tr>
+                <th>Roll</th>
+                <th>Student</th>
+                <th>Total Days</th>
+                <th>Present</th>
+                <th>Absent</th>
+                <th>%</th>
+                <th>Status</th>
+              </tr>
+         
+                {% for data in analytics_data %}
+                <tr>
+                  <td>{{ data.student.student_roll }}</td>
+                  <td>{{ data.student.student_name }}</td>
+                  <td>{{ data.present_days|add:data.absent_days }}</td>
+                  <td>{{ data.present_days }}</td>
+                  <td>{{ data.absent_days }}</td>
+                  <td>{{ data.percentage }}%</td>
+                  <td>
+                    {% if data.fine_required %}
+                      <span class="fine">Fine Required</span>
+                    {% else %}
+                      <span class="clear">Clear</span>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
+          </table>
+        {% endif %}  
+      </div>
+    </div>
+  </div>
+  <script src="{% static "js/index.js" %}" ></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Srinath University Attendance Management System</title> 
+     <link rel="icon" href="{% static "images/favicon.png" %}" type="image/png">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static "css/style.css" %}" />
+    <link rel="stylesheet" href="{% static "css/responsive.css" %}?v=1.0" />
+  </head>
+  <body>
+
+    <!-- LoginAs Page -->
+    <div class="loginAs-page" id="loginAsPage style="display: none;">
+      <header class="loginAs-page-header">
+        <div class="logo-container">
+          <img src="{% static "images/su-logo-white.png" %}" alt="University Logo" class="logo" />
+        </div>
+        <h1>ATTENDANCE MANAGEMENT SYSTEM</h1>
+      </header>
+      <div class="loginAs-page-body">
+        <h1>LOGIN AS <i class="fa-solid fa-arrow-right-to-bracket"></i></h1>
+        <div class="loginAs-page-btns">
+          <a href="{% url "login" %}?group=admin" id="adminBtn">ADMIN</a>
+          <a href="{% url "login" %}?group=teacher" id="teacherBtn">TEACHER</a>
+        </div>
+      </div>
+    </div>
+    <script src="{% static "js/index.js" %}" ></script>
+  </body>
+</html>

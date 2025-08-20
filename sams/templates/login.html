@@ -1,0 +1,75 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link rel="icon" href="{% static "images/favicon.png" %}" type="image/png">
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static "css/style.css" %}" />
+    <link rel="stylesheet" href="{% static "css/responsive.css" %}" />
+  </head>
+  <body>
+    <div class="forlog_main_container">
+      <div class="forlog-container">
+        <div class="forlog-img-container">
+          <img src="{% static "images/login.jpg" %}" alt="login img" />
+        </div>
+        <div class="forlog-form">
+          {% if group_name == 'admin' %}
+            <p class="welcome-para1">Welcome to the Admin Panel.</p>
+          {% elif group_name == 'teacher' %}
+            <p class="welcome-para1">Welcome to the Teacher Panel.</p>
+          {% endif %}
+          <p class="welcome-para2">Please log in to continue!</p>
+          <form action="" method="POST" class="forlog">
+            {% csrf_token %}
+            <div class="input-group">
+              <i class="fas fa-solid fa-user icon"></i>
+              <input type="text" id="username" name="username" placeholder="Username" />
+            </div>
+            <div class="input-group">
+              <i class="fas fa-lock icon"></i>
+              <input type="password" id="password" name="password" placeholder="Password" />
+              <button type="button" class="toggle-password">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+            <button type="submit" class="forlog-btn">LOGIN</button>
+          </form>
+          {% if messages %}
+          <div class="messages">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+          <div class="form-links">
+            <span>Forgot Password?</span>
+            <a 
+            href="{% url "reset_password" %}?group={{ group_name }}">
+            Click Here</a>
+            <br /><br />
+            {% if group_name == 'admin' %}
+              <span class="new-reg">New Admin?</span>
+            {% elif group_name == 'teacher' %}
+              <span class="new-reg">New Teacher?</span>
+            {% endif %}
+            <a href="{% url "signup" %}?group={{ group_name }}" style="font-size: 1rem">Signup Here</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="{% static "js/index.js" %}" ></script>
+  </body>
+</html>

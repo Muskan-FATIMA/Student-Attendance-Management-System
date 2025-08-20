@@ -1,0 +1,265 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Students</title>
+    <link rel="icon" href="{% static "images/favicon.png" %}" type="image/png">
+    <link
+    href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  />
+  <link rel="stylesheet" href="{% static "css/style.css" %}" />
+  <link rel="stylesheet" href="{% static "css/responsive.css" %}" />
+</head>
+<body>
+  <div class="hamburger" id="hamburger">
+    <i class="fa-solid fa-bars"></i>
+  </div>
+  <div class="a-page">
+      <aside class="a-sidebar" id="sidebar">   
+        <div class="close-btn" id="closeBtn">
+         <i class="fa-solid fa-xmark"></i>
+       </div>
+      <img
+      src="{% static "images/su-logo-white.png" %}"
+      alt="SU-logo-white"
+        class="su-logo-white"
+      />
+      <div class="line-below-logo"></div>
+      <div class="a-sidebar-links">
+        <a 
+        href="{% url "admin_profile" %}" 
+        class="profile">
+          <i class="fa-solid fa-user"></i>
+          <span>Manage Your Profile</span>
+        </a> 
+        <a 
+        href="{% url "dashboard" %}" 
+        class="dashboard">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Dashboard</span>
+        </a>
+        
+        <a 
+        href="{% url "manage_teachers" %}" 
+        class="teachers">
+          <i class="fa-solid fa-chalkboard-user"></i>
+          <span>Teachers</span>
+        </a>
+        <a 
+        href="{% url "manage_batches" %}" 
+        class="batches">
+          <i class="fa-regular fa-calendar-plus"></i>
+          <span>Batches</span>
+        </a>
+        <a 
+        href="{% url "manage_courses" %}" 
+        class="courses">
+          <i class="fa-solid fa-bookmark"></i>
+          <span>Courses</span>
+        </a>
+        <a 
+        href="{% url "manage_sections" %}" 
+        class="sections">
+          <i class="fa-solid fa-table-columns"></i>
+          <span>Sections</span>
+        </a>
+        <a 
+        href="{% url "manage_subjects" %}" 
+        class="subjects">
+          <i class="fa-solid fa-book-open"></i>
+          <span>Subjects</span>
+        </a>
+        <a 
+        href="{% url "manage_students" %}" 
+        class="students">
+          <i class="fa-solid fa-graduation-cap" style="color: #fdb813"></i>
+          <span style="color: #fdb813">Students</span>
+        </a>
+        <a
+          href="{% url "manage_attendance_record" %}"
+          class="attendance-record"
+        >
+          <i class="fa-regular fa-clipboard"></i>
+          <span>Attendance Record</span>
+        </a>
+       <a
+        href="{% url "manage_attendance_analytics" %}"
+        class="analytics"
+      >
+      <i class="fa-solid fa-chart-line"></i>
+        <span>Attendance Analytics</span>
+      </a>
+        <div class="line-above-logout"></div>
+        <a 
+        href="{% url "logout" %}" 
+        class="logout">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          <span>Logout</span>
+        </a>
+        <form action="{% url 'delete_admin_account' %}" method="POST" onsubmit="return confirm('Are you sure you want to delete your account?');">
+          {% csrf_token %}
+          <a class="delete-btn-acnhortag">
+          <i class="fa-solid fa-trash"></i>
+         <span> <button type="submit" class="delete-btn">Delete Account</button></span>
+        </a>
+      </form>
+      </div>
+    </aside>
+    <div class="a-main">
+      <div class="a-heading">
+        <h1>LIST OF ALL STUDENTS - {{selected_course.course_name}} ({{selected_batch.batch_year}}) Sem {{selected_semester.semester_num}} ({{selected_section.section_name}})</h1>
+      </div>
+      {% if messages %}
+      <div class="messages">
+        {% for message in messages %}
+          <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">
+            <button class="close-btn" onclick="this.parentElement.style.display='none';"><i class="fa-solid fa-xmark"></i></button>
+            <p>{{ message }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+      <div class="students-main-container">
+        <div class="students-list-container">
+          <form id="filterForm" method="GET" action="{% url 'manage_students' %}">
+             <div class="add-new-student-btn">
+            <i class="fa-solid fa-square-plus"></i>
+            ADD STUDENT
+          </div>
+                 <button class="filter-toggle" id="filterToggleBtn">
+                  <i class="fa-solid fa-filter"></i> Show Filters
+                   </button>
+        <div id="filterOptions" class="dropdown-section hide">
+              <div class="batch">
+                <label for="batch_selector">Choose Batch</label>
+                <select name="batch_id" id="batch_selector" onchange="this.form.submit()">
+                   <option value="" disabled selected>Batch</option>
+                  {% for batch in batches %}
+                      <option value="{{ batch.id }}" 
+                          {% if batch.id == selected_batch.id %}selected{% endif %}> 
+                          {{ batch.batch_year }}
+                      </option>
+                  {% endfor %}
+                  </select>
+          </div>
+          <div class="course">
+              <label for="course_selector">Choose Course</label>
+              <select name="course_id" id="course_selector" onchange="this.form.submit()">
+                 <option value="" disabled selected>Course</option>
+                  {% for course in courses %}
+                      <option value="{{ course.id }}" {% if course.id == selected_course.id %}selected{% endif %}>
+                          {{ course.course_name }}
+                      </option>
+                  {% endfor %}
+              </select>
+          </div>
+          <div class="semester">
+              <label for="semester_selector">Choose Semester</label>
+              <select name="semester_id" id="semester_selector" onchange="this.form.submit()">
+                 <option value="" disabled selected>Semester</option>
+                  {% for semester in semesters %}
+                      <option value="{{ semester.id }}" {% if semester.id == selected_semester.id %}selected{% endif %}>
+                          {{ semester.semester_num }}
+                      </option>
+                  {% endfor %}
+              </select>
+              </div>
+                <div class="section">
+                  <label for="section_selector">Choose Section</label>
+                  <select name="section_id" id="section_selector" onchange="this.form.submit()">
+                     <option value="" disabled selected>Section</option>
+                    {% for section in sections %}
+                      <option value="{{ section.id }}" {% if section.id == selected_section.id %}selected{% endif %}>
+                        {{ section.section_name }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </form>  
+         
+       
+        </div>
+         <table border="3" class="student-table">
+            <tr>
+              <th>Student_ID</th>
+              <th>Name</th>
+              <th>Roll No.</th>
+              <th>Phone No.</th>
+              <th colspan="2">Actions</th>
+            </tr>
+            {% for student in students %}
+            <tr>
+              <td>{{ student.student_id }}</td>
+              <td>{{ student.student_name }}</td>
+              <td>{{ student.student_roll }}</td>
+              <td>{{ student.student_phone }}</td>
+              <td class="edit"><a href="{% url 'update_student' student.student_id %}"><i class="fa-solid fa-pencil"></i></a></td>
+              <td class="delete"><a href="{% url 'delete_student' student.student_id %}"><i class="fa-solid fa-trash-can"></i></a></td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="6">No students found.</td>
+            </tr>
+          {% endfor %}
+          </table>
+        </div>
+        <div class="add-new-student-container">
+          <div class="heading">
+            <h1>ADD NEW STUDENT</h1>
+          </div>
+          <form action="{% url 'manage_students' %}" method="POST">
+            {% csrf_token %}
+            <div class="info-container">
+              <label>Batch:</label>
+              <span>{{ selected_batch.batch_year }}</span>
+              <input type="hidden" name="choose_batch" value="{{ selected_batch.id }}">
+          </div>
+      
+          <div class="info-container">
+              <label>Course:</label>
+              <span>{{ selected_course.course_name }}</span>
+              <input type="hidden" name="choose_course" value="{{ selected_course.id }}">
+          </div>
+      
+          <div class="info-container">
+              <label>Semester:</label>
+              <span>{{ selected_semester.semester_num }}</span>
+              <input type="hidden" name="choose_semester" value="{{ selected_semester.id }}">
+          </div>
+          <div class="info-container">
+              <label>Section:</label>
+              <span>{{ selected_section.section_name }}</span>
+              <input type="hidden" name="choose_section" value="{{ selected_section.id }}">
+            </div>
+            <br>
+          <div class="input-group pop">
+            <i class="fa-regular fa-keyboard icon"></i>
+            <input type="text" id="student_name" name="student_name" placeholder="Student Name" required/>
+          </div>
+          <div class="input-group pop">
+              <i class="fa-regular fa-keyboard icon"></i>
+            <input type="text" id="student_roll" name="student_roll" placeholder="Student Roll No." required/>
+          </div>
+          <div class="input-group pop">
+            <i class="fa-regular fa-keyboard icon"></i>
+            <input type="text" id="student_phone" maxlength="10" name="student_phone" placeholder="Student Phone No." required/>
+          </div>
+            <div class="btns">
+              <button type="submit" class="add-btn">ADD</button>
+              <a href="{% url 'manage_students' %}" class="cancel-btn">CANCEL</a>
+            </div>
+          </form>
+        </div>
+      </div>
+      </div>
+      <script src="{% static "js/index.js" %}" ></script>
+</body>
+</html>

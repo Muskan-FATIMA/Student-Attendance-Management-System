@@ -1,0 +1,173 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="icon" href="{% static "images/favicon.png" %}" type="image/png">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static "css/style.css" %}" />
+    <link rel="stylesheet" href="{% static "css/responsive.css" %}" />
+  </head>
+  <body>
+      <div class="hamburger" id="hamburger">
+    <i class="fa-solid fa-bars"></i>
+  </div>
+    <div class="a-page">
+       <aside class="a-sidebar" id="sidebar">   
+        <div class="close-btn" id="closeBtn">
+         <i class="fa-solid fa-xmark"></i>
+       </div>
+        <img
+          src="{% static "images/su-logo-white.png" %}"
+          alt="SU-logo-white"
+          class="su-logo-white"
+        />
+        <div class="line-below-logo"></div>
+        <div class="a-sidebar-links">
+          <a 
+          href="{% url "admin_profile" %}" 
+          class="profile">
+            <i class="fa-solid fa-user"></i>
+            <span>Manage Your Profile</span>
+          </a> 
+          <a 
+          href="{% url "dashboard" %}" 
+          class="dashboard">
+            <i class="fa-solid fa-chart-line" style="color: #fdb813"></i>
+            <span style="color: #fdb813">Dashboard</span>
+          </a>
+          
+          <a 
+          href="{% url "manage_teachers" %}" 
+          class="teachers">
+            <i class="fa-solid fa-chalkboard-user"></i>
+            <span>Teachers</span>
+          </a>
+          <a 
+          href="{% url "manage_batches" %}" 
+          class="batches">
+            <i class="fa-regular fa-calendar-plus"></i>
+            <span>Batches</span>
+          </a>
+          <a 
+          href="{% url "manage_courses" %}" 
+          class="courses">
+            <i class="fa-solid fa-bookmark"></i>
+            <span>Courses</span>
+          </a>
+          <a 
+          href="{% url "manage_sections" %}" 
+          class="sections">
+            <i class="fa-solid fa-table-columns"></i>
+            <span>Sections</span>
+          </a>
+          <a 
+          href="{% url "manage_subjects" %}" 
+          class="subjects">
+            <i class="fa-solid fa-book-open"></i>
+            <span>Subjects</span>
+          </a>
+          <a 
+          href="{% url "manage_students" %}" 
+          class="students">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>Students</span>
+          </a>
+          <a
+            href="{% url "manage_attendance_record" %}"
+            class="attendance-record"
+          >
+            <i class="fa-regular fa-clipboard"></i>
+            <span>Attendance Record</span>
+          </a>
+     <a
+        href="{% url "manage_attendance_analytics" %}"
+        class="analytics"
+      >
+      <i class="fa-solid fa-chart-line"></i>
+        <span>Attendance Analytics</span>
+      </a>
+          <div class="line-above-logout"></div>
+          <a 
+          href="{% url "logout" %}" 
+          class="logout">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>Logout</span>
+          </a>
+          <form action="{% url 'delete_admin_account' %}" method="POST" onsubmit="return confirm('Are you sure you want to delete your account?');">
+            {% csrf_token %}
+            <a class="delete-btn-acnhortag">
+            <i class="fa-solid fa-trash"></i>
+           <span> <button type="submit" class="delete-btn">Delete Account</button></span>
+          </a>
+        </form>
+        </div>
+      </aside>
+      <div class="a-main">
+        <div class="a-heading">
+          <h1>DASHBOARD</h1>
+        </div>
+        <div class="dashboard-content">
+          <div class="dashboard-card-container">
+            <a 
+            href="{% url "manage_teachers" %}" 
+            class="dashboard-card1">
+              <div class="card-img">
+                <i class="teacher-icon fa-solid fa-chalkboard-user fa-2x"></i>
+              </div>
+              <div class="card-content">
+                <span class="card-num">{{teacher_count}}</span>
+                <span class="card-text">TOTAL TEACHERS</span>
+              </div>
+            </a>
+            <a 
+            href="{% url "manage_students" %}" 
+             class="dashboard-card2">
+              <div class="card-img">
+                <i class="student-icon fa-solid fa-graduation-cap fa-2x"></i>
+              </div>
+              <div class="card-content">
+                <span class="card-num">{{student_count}}</span>
+                <span class="card-text">TOTAL STUDENTS</span>
+              </div>
+            </a>
+            <a 
+            href="{% url "manage_courses" %}" 
+            class="dashboard-card3">
+              <div class="card-img">
+                <i class="course-icon fa-solid fa-bookmark fa-2x"></i>
+              </div>
+              <div class="card-content">
+                <span class="card-num">{{total_unique_courses}}</span>
+                <span class="card-text">TOTAL COURSES</span>
+              </div>
+            </a>
+            <a
+              href="{% url "manage_attendance_record" %}"
+              class="dashboard-card4"
+            >
+              <div class="card-img">
+                <i class="attendance-icon fa-solid fa-chart-column fa-2x"></i>
+              </div>
+              <div class="card-content">
+                <span class="card-num">{{attendance_percent|floatformat:2}}%</span>
+                <span class="card-text">ATTENDANCE</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+     <script src="{% static "js/index.js" %}" ></script>
+  </body>
+</html>
